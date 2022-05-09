@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/index.css">
+    <link rel="stylesheet" href="../static/detail.css">
+    <title>Detail Page</title>
+</head>
+<body>
+    <!-- 상단 바 -->
+    <nav class="navbar">
+        <!-- 로고 -->
+        <div class="navbar__logo">
+            <h1>The Ball</h1>
+        </div>
+        <!-- 상단 바 메뉴 -->
+        <ul class="navbar__menu">
+            <li><a href="">축구</a></li>
+            <li><a href="">야구</a></li>
+            <li><a href="">농구</a></li>
+            <li><a href="">배구</a></li>    
+        </ul>
+        <ul>
+            <!-- 비로그인 시 화면 -->
+            <button class="navbar__login">로그인</button>
+            <button class="navbar__signup">회원 가입</button>
+            <!-- 로그인 시 화면 -->
+            <!-- <button class="navbar__mypage">마이페이지</button>
+            <button class="navbar__logout">로그아웃</button> -->
+        </ul>
+    </nav>
+    <!-- 구단 정보 상단 -->
+    <!-- <div class="team__background">
+        <img src="../static/img/team_background.jpg" alt="">
+    </div> -->
+    <div class="info">
+        <div class="team__info">
+            <div class="team__logo"><img src="../static/img/team__logo.png" alt="구단 로고"></div>
+            <div class="team__name">구단 명 들어갈 곳</div>
+            <button class="team__comment">댓글 작성</button>
+        </div>
+    </div>
+    <!-- Detail Page 중단 -->
+    <div class="wrap">
+        <!-- 구단 일정 -->
+        <!-- 구단 일정 크롤링 해보시고 맞는 형식으로 다시 코딩하시면 됩니다 -->
+        <div class="team__schedule">
+            <h2>구단 일정</h2>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+        <!-- 구단 구성원 -->
+        <div class="team__right">
+            <div class="team__member">구성원</div>
+            <div class="team__points">승점 현황</div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <ul>
+            <li class="footer__logo"><img src="../static/img/logo.png" alt="항해 로고"></li>
+            <li class="footer__team"><strong>C반 10조 정연욱 조세림 최서우 이소영</strong></li>
+        </ul>
+    </footer>
+</body>
+</html>

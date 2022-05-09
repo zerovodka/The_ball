@@ -1,0 +1,47 @@
+/* 구단 정보 상단 */
+.team__info {
+    /* background-color: green; */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../static/img/team_background.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.team__logo img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+.team__comment {
+    margin-top: 10px;
+}
+
+/* Detail Page 중단 */
+.wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.team__schedule {
+    /* background-color: yellow; */
+    width: 40%;
+    height: 800px;
+}
+
+.team__right {
+    /* background-color: red; */
+    width: 60%;
+}
+
+.team__member {
+    /* background-color: blue; */
+    height: 300px;
+}
+
+.team__points {
+    height
+}

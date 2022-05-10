@@ -1,0 +1,46 @@
+/*배너 스타일*/
+body {
+    background-color: lightgrey;
+    min-height: 100vh;
+}
+
+.section {
+    padding: 1rem 1.5rem;
+    max-width: 750px;
+    margin: auto;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 5rem;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+}
+
+.is-sparta {
+    color: black !important;
+}
+
+/*로그인 박스 스타일*/
+.button.is-sparta {
+    background-color: gray;
+    border-color: transparent;
+    color: white !important;
+}
+
+.button.is-sparta.is-outlined {
+    background-color: transparent;
+    border-color: gray;
+    color: black !important;
+}
+
+.help {
+    color: gray;
+}
+
+/*회원가입 요소 숨기기*/
+.is-hidden {
+    display: none !important;
+}

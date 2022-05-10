@@ -94,6 +94,7 @@ def sign_in():
 
 @app.route('/sign_up/save', methods=['POST'])
 def sign_up():
+    # 회원가입
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()

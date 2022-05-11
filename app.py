@@ -2,12 +2,14 @@
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
+
 import jwt
 import datetime
 import hashlib
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -17,8 +19,12 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 SECRET_KEY = 'SPARTA'
 
 # mongoDB 연결
+
 client = MongoClient('mongodb+srv://test:sparta@cluster0.mlula.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.miniproject
+
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+
 
 # HTML 주는 부분 #
 
@@ -38,7 +44,7 @@ def home():
             return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
     # 로그인한 유저가 아닐 경우
     else:
-        return render_template('intro.html')
+        return render_template('index.html')
 
 
 # 로그인 페이지
@@ -115,6 +121,31 @@ def check_dup():
     exists = bool(db.users.find_one({"username": username_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
+# index_soccer_server
+@app.route("/index_soccer", methods=['GET'])
+def soccer():
+    soccer_team_list = list(db.SOCCER.find({}, {'_id': False}))
+    return jsonify({'team_list': soccer_team_list})
+
+# index_BASKETBALL_server
+@app.route("/index_basketball", methods=['GET'])
+def basketball():
+    basketball_team_list = list(db.BASKETBALL.find({}, {'_id': False}))
+    return jsonify({'team_list': basketball_team_list})
+
+# index_BASEBALL_server
+@app.route("/index_baseball", methods=['GET'])
+def baseball():
+    baseball_team_list = list(db.BASEBALL.find({}, {'_id': False}))
+    return jsonify({'team_list': baseball_team_list})
+
+# index_VOLLEYBALL_server
+@app.route("/index_volleyball", methods=['GET'])
+def volleyball():
+    volleyball_team_list = list(db.VOLLEYBALL.find({}, {'_id': False}))
+    return jsonify({'team_list': volleyball_team_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
+
+

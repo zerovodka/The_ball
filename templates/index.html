@@ -21,156 +21,195 @@
             alert('로그아웃!')
             window.location.href = '/'
         }
+
+        // 종목 api
+        function baseball() {
+            $('#post').empty()
+
+            $.ajax({
+                type: 'GET',
+                url: '/index_baseball',
+                data: {},
+                success: function (response) {
+                    let rows = response['team_list']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let logo = rows[i]['logo']
+                        let rank = rows[i]['rank']
+                        let home = rows[i]['home']
+
+                        let temp_html = ` <div class="col-sm-6">
+                                            <div class="card">
+                                                <button type="button" class="btn btn-outline-dark">응원하기</button>
+                                                <div class="card-body">
+                                                    <h4 class="card-title">${name}</h4>
+                                                    <img src="${logo}" class="logo_image">
+                                                    <ul>
+                                                       <li>2021 성적 : ${rank} </li>
+                                                       <li>홈구장 : ${home} </li>
+                                                    </ul>
+                                                </div>
+                                             </div>
+                                            </div>`
+
+                        $('#post').append(temp_html)
+                    }
+                }
+            })
+        }
+
+        function basketball() {
+            $('#post').empty()
+            $.ajax({
+                type: 'GET',
+                url: '/index_basketball',
+                data: {},
+                success: function (response) {
+                    let rows = response['team_list']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let logo = rows[i]['logo']
+                        let rank = rows[i]['rank']
+                        let home = rows[i]['home']
+
+                        let temp_html = ` <div class="col-sm-6">
+                                            <div class="card">
+                                                <button type="button" class="btn btn-outline-dark">응원하기</button>
+                                                <div class="card-body">
+                                                    <h4 class="card-title">${name}</h4>
+                                                    <img src="${logo}" class="logo_image">
+                                                    <ul>
+                                                       <li>2021 성적 : ${rank} </li>
+                                                       <li>홈구장 : ${home} </li>
+                                                    </ul>
+                                                </div>
+                                             </div>
+                                            </div>`
+
+                        $('#post').append(temp_html)
+                    }
+                }
+            })
+        }
+
+        function volleyball() {
+            $('#post').empty()
+            $.ajax({
+                type: 'GET',
+                url: '/index_volleyball',
+                data: {},
+                success: function (response) {
+                    let rows = response['team_list']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let logo = rows[i]['logo']
+                        let rank = rows[i]['rank']
+                        let home = rows[i]['home']
+
+                        let temp_html = ` <div class="col-sm-6">
+                                            <div class="card">
+                                                <button type="button" class="btn btn-outline-dark">응원하기</button>
+                                                <div class="card-body">
+                                                    <h4 class="card-title">${name}</h4>
+                                                    <img src="${logo}" class="logo_image">
+                                                    <ul>
+                                                       <li>2021 성적 : ${rank} </li>
+                                                       <li>홈구장 : ${home} </li>
+                                                    </ul>
+                                                </div>
+                                             </div>
+                                            </div>`
+
+                        $('#post').append(temp_html)
+                    }
+                }
+            })
+        }
+
+        function soccer() {
+            $('#post').empty()
+            $.ajax({
+                type: 'GET',
+                url: '/index_soccer',
+                data: {},
+                success: function (response) {
+                    let rows = response['team_list']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let logo = rows[i]['logo']
+                        let rank = rows[i]['rank']
+                        let home = rows[i]['home']
+
+                        let temp_html = ` <div class="col-sm-6">
+                                            <div class="card">
+                                                <button type="button" class="btn btn-outline-dark">응원하기</button>
+                                                <div class="card-body">
+                                                    <h4 class="card-title">${name}</h4>
+                                                    <img src="${logo}" class="logo_image">
+                                                    <ul>
+                                                       <li>2021 성적 : ${rank} </li>
+                                                       <li>홈구장 : ${home} </li>
+                                                    </ul>
+                                                </div>
+                                             </div>
+                                            </div>`
+
+                        $('#post').append(temp_html)
+                    }
+                }
+            })
+        }
     </script>
 </head>
 <body>
-    <!-- 상단 바 -->
-    <nav class="navbar">
-        <!-- 로고 -->
-        <div class="navbar__logo">
-            <h1>The Ball</h1>
-        </div>
-        <!-- 상단 바 메뉴 -->
-        <ul class="navbar__menu">
-            <li><a href="">축구</a></li>
-            <li><a href="">야구</a></li>
-            <li><a href="">농구</a></li>
-            <li><a href="">배구</a></li>
-        </ul>
-        <ul>
-            <!-- 로그인 시 화면 -->
-            {% if username %}
+<!-- 상단 바 -->
+<nav class="navbar">
+    <!-- 로고 -->
+    <div class="navbar__logo">
+        <h1>The Ball</h1>
+    </div>
+    <!-- 상단 바 메뉴 -->
+    <ul class="navbar__menu">
+        <li>
+            <button onclick="soccer()">축구</button>
+        </li>
+        <li>
+            <button onclick="baseball()">야구</button>
+        </li>
+        <li>
+            <button onclick="basketball()">농구</button>
+        </li>
+        <li>
+            <button onclick="volleyball()">배구</button>
+        </li>
+    </ul>
+    <ul>
+        <!-- 로그인 시 화면 -->
+        {% if username %}
             <button class="navbar__mypage" onclick="window.location.href='/user'">마이페이지</button>
             <button class="navbar__logout" onclick="logout()">로그아웃</button>
 
             <!-- 비로그인 시 화면 -->
-            {% else %}
+        {% else %}
             <button class="navbar__login" onclick="window.location.href='/login'">로그인</button>
             <button class="navbar__signup" onclick="window.location.href='/register'">회원가입</button>
-            {% endif %}
-        </ul>
-    </nav>
-    <div class="main__image">
-        <img src="../static/img/main.jpg" alt="메인 이미지">
+        {% endif %}
+    </ul>
+</nav>
+<div class="main__image">
+    <img src="../static/img/main.jpg" alt="메인 이미지">
+</div>
+
+    <!-- 구단 CARD -->
+    <div class="row" id="post">
     </div>
-    <div class="main__cards">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="여기 구단 이미지 들어가요">
-                    <div class="card-body">
-                        <h5 class="card-title">구단명 들어가요</h5>
-                        <p class="card-text">구단 슬로건 들어가요(or 구단 설명)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer -->
-    <footer class="footer">
-        <ul>
-            <li class="footer__logo"><img src="../static/img/logo.png" alt="항해 로고"></li>
-            <li class="footer__team"><strong>C반 10조 정연욱 조세림 최서우 이소영</strong></li>
-        </ul>
-    </footer>
+
+<!-- Footer -->
+<footer class="footer">
+    <ul>
+        <li class="footer__logo"><img src="../static/img/logo.png" alt="항해 로고"></li>
+        <li class="footer__team"><strong>C반 10조 정연욱 조세림 최서우 이소영</strong></li>
+    </ul>
+</footer>
 </body>
 </html>

@@ -1,46 +1,42 @@
-/*배너 스타일*/
-body {
-    background-color: lightgrey;
-    min-height: 100vh;
+* {
+    font-family: 'Jua', sans-serif;
 }
-
-.section {
-    padding: 1rem 1.5rem;
-    max-width: 750px;
+a:hover {
+    color: red;
+}
+h2 {
+    width: fit-content;
     margin: auto;
 }
-
-.title {
-    font-weight: 700;
-    font-size: 5rem;
+/*로그인 창*/
+.wrap {
+    min-width: 500px;
+    max-width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+    padding-bottom: 200px;
 }
-
-.subtitle {
-    font-size: 1.5rem;
+.wrapper {
+    width: 400px;
+    min-height: 100%;
 }
-
-.is-sparta {
-    color: black !important;
+.login__btn > button {
+    width: 400px;
+    margin-top: 20px;
 }
-
-/*로그인 박스 스타일*/
-.button.is-sparta {
-    background-color: gray;
-    border-color: transparent;
-    color: white !important;
-}
-
-.button.is-sparta.is-outlined {
-    background-color: transparent;
-    border-color: gray;
-    color: black !important;
-}
-
-.help {
-    color: gray;
-}
-
-/*회원가입 요소 숨기기*/
-.is-hidden {
-    display: none !important;
+/*회원 가입 창*/
+.wrap_singup {
+    min-width: 500px;
+    max-width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    padding-bottom: 200px;
 }

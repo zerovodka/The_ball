@@ -1,0 +1,25 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#footer {
+    background-color: #212121;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 200px;
+    width: 100%;
+}
+.footer_info h2 img {
+    width: 180px;
+    margin-top: 20px;
+}
+.footer_info ul li {
+    position: relative;
+    display: inline;
+    padding-right: 16px;
+    white-space: nowrap;
+    color: white;
+}

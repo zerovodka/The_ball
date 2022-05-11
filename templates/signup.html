@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Log In | The Ball</title>
+    <title>Sign Up | The Ball</title>
 
     <!--    Font Awesome-->
     <script src="https://kit.fontawesome.com/6cf317afd4.js" crossorigin="anonymous"></script>
@@ -32,53 +32,9 @@
     <link rel="stylesheet" href="../static/login.css">
     <link rel="stylesheet" href="../static/footer.css">
 
-    <!--    jQuery Cookie-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <!--    Sign Up 스크립트 불러오기   -->
+    <script src="../static/signup.js"></script>
 </head>
-
-<script>
-    //for Test - Seowoo
-    function login() {
-        let username = $("#floatingInput_ID").val()
-        let password = $("#floatingInput_PW").val()
-
-        if (username === "") {
-            alert('아이디를 입력해주세요.')
-            $("#floatingInput_ID").focus()
-            return;
-        } else {
-            $("#floatingInput_ID").text("")
-        }
-
-        if (password === "") {
-            alert('비밀번호를 입력해주세요.')
-            $("#floatingInput_PW").focus()
-            return;
-        } else {
-            $("#floatingInput_PW").text("")
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "/sign_in",
-            data: {
-                give_id: username,
-                give_pw: password
-            },
-            success: function (response) {
-                console.log('성공')
-                if (response['result'] === 'success') {
-                    $.cookie('mytoken', response['token'], {path: '/'});
-                    alert(response['msg'])
-                    window.location.replace("/")
-                } else {
-                    alert(response['msg'])
-                }
-            }
-        });
-    }
-</script>
-
 <body>
 <!--Navbar-->
 <nav class="navbar">
@@ -94,33 +50,51 @@
     </ul>
     <ul class="clearfix">
         <strong>
-            <li class="nav-text"><a href="/signup"><i class="fa-solid fa-pen-to-square"></i>
-                회원가입</a></li>
+            <li class="nav-text"><a href="/login"><i class="fa-solid fa-pen-to-square"></i>
+                로그인</a></li>
         </strong>
     </ul>
     <a href="#" class="navbar__toggleBtn"><i class="fa-solid fa-bars"></i></a>
 </nav>
-
-<!--로그인 창-->
-<section class="wrap">
+<section class="wrap_singup">
     <div class="wrapper">
-        <div class="login">
-            <h2>로그인</h2>
+        <div class="signup">
+            <h2>회원 가입</h2>
         </div>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput_ID" placeholder="ID">
-            <label for="floatingInput_ID">ID</label>
+        <div class="mb-3">
+            <div class="input_data form-floating">
+                <input type="text" class="form-control" id="floatingInput_ID" placeholder="ID"
+                       maxlength="12"
+                       onkeyup="checkId(this.value)">
+                <label for="floatingInput_ID">ID : 4~12자리 영문,숫자만 가능</label>
+                <button onclick="users_idCheck()" type="button" class="btn btn-dark">중복확인</button>
+            </div>
+            <label for="floatingInput_ID" id="checkIdResult"></label>
         </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingInput_PW" placeholder="Password">
-            <label for="floatingInput_PW">Password</label>
+        <div class="mb-3">
+            <div class="input_data form-floating">
+                <input type="password" class="form-control" id="floatingInput_PW" placeholder="Password"
+                       onkeyup="checkPassword(this.value)" maxlength="16">
+                <label for="floatingInput_PW">Password : 8~16자리 영문자,숫자,특수문자 조합</label>
+            </div>
+            <label for="floatingInput_PW" id="checkPasswordResult"></label>
+        </div>
+        <div class="mb-3">
+            <div class="input_data form-floating">
+                <input type="password" class="form-control" id="floatingInput_PW_Check"
+                       placeholder="Password Check"
+                       onkeyup="checkPasswordConfirm(this.value)" maxlength="16">
+                <label for="floatingInput_PW_Check">Password Check</label>
+            </div>
+            <label for="floatingInput_PW_Check" id="passwordConfirmResult"></label>
         </div>
         <div class="login__btn">
-            <button onclick="login()" type="button" class="btn btn-outline-primary">로그인</button>
+            <button onclick="signup()" type="button" class="btn btn-outline-primary">회원 가입</button>
         </div>
     </div>
 </section>
-<!--Footer-->
+
+
 <footer id="footer">
     <div class="footer_info">
         <h2>

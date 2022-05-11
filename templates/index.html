@@ -19,7 +19,7 @@
         function logout() {
             $.removeCookie('mytoken', {path: '/'});
             alert('로그아웃!')
-            window.location.href = '/'
+            window.location.href = '/login'
         }
 
         // 종목 api
@@ -185,15 +185,8 @@
     </ul>
     <ul>
         <!-- 로그인 시 화면 -->
-        {% if username %}
-            <button class="navbar__mypage" onclick="window.location.href='/user'">마이페이지</button>
+            <button class="navbar__mypage">마이페이지</button>
             <button class="navbar__logout" onclick="logout()">로그아웃</button>
-
-            <!-- 비로그인 시 화면 -->
-        {% else %}
-            <button class="navbar__login" onclick="window.location.href='/login'">로그인</button>
-            <button class="navbar__signup" onclick="window.location.href='/register'">회원가입</button>
-        {% endif %}
     </ul>
 </nav>
 <div class="main__image">

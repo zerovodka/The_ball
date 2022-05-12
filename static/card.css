@@ -1,0 +1,22 @@
+#post {
+    width: 95%;
+    margin: auto;
+}
+.card {
+    width: 500px;
+    height: 250px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+}
+.card > button {
+    border: none;
+}
+.card-body {
+    display: flex;
+    flex-direction: row;
+}
+.card-body > .logo_image > img {
+    width: 200px;
+    height: 200px;
+}

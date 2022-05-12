@@ -14,6 +14,9 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.g1o5l.mongodb.net/myFir
                      tlsCAFile=ca)
 db = client.dbsparta_plus_week1
 
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+
 # 비밀 키 설정
 SECRET_KEY = 'SPARTA'
 
@@ -48,25 +51,36 @@ def signup():
     return render_template('signup.html')
 
 
-# 각 스포츠 페이지 이동
-@app.route('/soccer')
-def soccer():
-    return render_template('soccer.html')
-
-
-@app.route('/baseball')
-def baseball():
-    return render_template('baseball.html')
-
-
-@app.route('/basketball')
-def basketball():
-    return render_template('basketball.html')
-
-
-@app.route('/valleyball')
-def valleyball():
-    return render_template('valleyball.html')
+# # 각 스포츠 페이지 이동
+# 밑에 크롤링 함수랑 중복돼서 에러남 -> 주석 처리
+# @app.route('/soccer_team')
+# def soccer_team():
+#     token_receive = request.cookies.get('mytoken')
+#     if token_receive is not None:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         print(payload)
+#         user_info = db.users.find_one({"id": payload["id"]})
+#         print(user_info)
+#         login_status = 1
+#         return render_template('.html', user_info=user_info, login_status=login_status)
+#     else:
+#         login_status = 0
+#         return render_template('soccer.html', login_status=login_status)
+#
+#
+# @app.route('/baseball')
+# def baseball():
+#     return render_template('baseball.html')
+#
+#
+# @app.route('/basketball')
+# def basketball():
+#     return render_template('basketball.html')
+#
+#
+# @app.route('/valleyball')
+# def valleyball():
+#     return render_template('valleyball.html')
 
 
 # 댓글 게시판 이동
@@ -75,9 +89,9 @@ def comment():
     token_receive = request.cookies.get('mytoken')
     if token_receive is not None:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        print(payload)
+        # print(payload)
         user_info = db.users.find_one({"id": payload["id"]})
-        print(user_info)
+        # print(user_info)
         login_status = 1
         return render_template('comment.html', user_info=user_info, login_status=login_status)
     else:
@@ -118,7 +132,8 @@ def get_posts():
         for post in posts:
             post['_id'] = str(post['_id'])
             post["count_heart"] = db.likes.count_documents({"post_id": post["_id"], "type": "heart"})
-            post["heart_by_me"] = bool(db.likes.find_one({"post_id": post["_id"], "type": "heart", "username": payload['id']}))
+            post["heart_by_me"] = bool(
+                db.likes.find_one({"post_id": post["_id"], "type": "heart", "username": payload['id']}))
 
         return jsonify({'result': 'success', 'msg': '최신화!', 'posts': posts})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
@@ -215,6 +230,34 @@ def update_like():
         return jsonify({"result": "success", 'msg': 'updated', "count": count})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return render_template('index.html')
+
+
+# index_soccer_server
+@app.route("/index_soccer", methods=['GET'])
+def soccer():
+    soccer_team_list = list(db.SOCCER.find({}, {'_id': False}))
+    return jsonify({'team_list': soccer_team_list})
+
+
+# index_BASKETBALL_server
+@app.route("/index_basketball", methods=['GET'])
+def basketball():
+    basketball_team_list = list(db.BASKETBALL.find({}, {'_id': False}))
+    return jsonify({'team_list': basketball_team_list})
+
+
+# index_BASEBALL_server
+@app.route("/index_baseball", methods=['GET'])
+def baseball():
+    baseball_team_list = list(db.BASEBALL.find({}, {'_id': False}))
+    return jsonify({'team_list': baseball_team_list})
+
+
+# index_VOLLEYBALL_server
+@app.route("/index_volleyball", methods=['GET'])
+def volleyball():
+    volleyball_team_list = list(db.VOLLEYBALL.find({}, {'_id': False}))
+    return jsonify({'team_list': volleyball_team_list})
 
 
 if __name__ == '__main__':

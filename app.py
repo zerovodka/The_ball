@@ -8,10 +8,9 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-# client = MongoClient('localhost', 27017)
+client = MongoClient('localhost', 27017)
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.g1o5l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-                     tlsCAFile=ca)
+# client = MongoClient() // mongoDB 계정
 db = client.dbsparta_plus_week1
 
 headers = {
